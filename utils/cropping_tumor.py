@@ -8,8 +8,8 @@ import shutil
 from yolo.inference import *
 
 if __name__ == '__main__':
-    base_root = './dataset/box/'
-    base_save_root = './dataset/tumor/'
+    base_root = './dataset/preprocessing/box/'
+    base_save_root = './dataset/preprocessing/tumor/'
     subject_path = sorted(glob(base_root + '/*'))
     device = torch.device('cuda:0')
     subject_path.sort(key=lambda x: [int(c) if c.isdigit() else c for c in re.split(r'(\d+)', x)])
@@ -35,7 +35,7 @@ if __name__ == '__main__':
                 input = torch.from_numpy(input).unsqueeze(0).to(device)
                 input = input.float()
                 input /= 255
-                Inference(model, orginal_img, input, input_np, crop_save_path, box_save_path, img_name, conf_thres = 0.15, max_det = 1)
+                Inference_crop_tumor(model, orginal_img, input, input_np, crop_save_path, box_save_path, img_name, conf_thres = 0.15, max_det = 1)
             
             png_files = glob(box_save_path + '*.png', recursive=True)
             if len(png_files) == 0:
