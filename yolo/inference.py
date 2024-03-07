@@ -117,6 +117,16 @@ def Inference(model, orginal_img, img, img_np, save_path, img_name, conf_thres =
 #         cv2.imwrite(box_save_path + img_name, orginal_img)
 
 
+# def Inference_crop_icon(model, img, conf_thres = 0.2, iou_thres = 0.45, classes=None, agnostic_nms = False, max_det = 1):
+#     with torch.no_grad():
+#         pred = model(img, augment=False, visualize=False)
+#         pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+#         if len(pred[0]) > 0:
+#             return True
+#         else:
+#             return False
+
+
 
 
 
