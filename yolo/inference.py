@@ -102,19 +102,20 @@ def Inference(model, orginal_img, img, img_np, save_path, img_name, conf_thres =
 #         x_original, y_original = orginal_img.shape[1], orginal_img.shape[0]
 #         x_resized, y_resized = img_np.shape[1], img_np.shape[0]
 #         for i, det in enumerate(pred):
-#             for *xyxy, conf, cls in reversed(det):
-#                 img_crop = orginal_img.copy()
-#                 x0, y0, x1, y1 = xyxy[0].item(), xyxy[1].item(), xyxy[2].item(), xyxy[3].item()
-#                 x0, y0, x1, y1 = adjust_coordinate(x0, y0, x1, y1, x_resized, y_resized)
-#                 image = resize_image(img_np, [[x0, y0, x1, y1, 0]], y_original, x_original)
-#                 x0, y0, x1, y1 = image['bboxes'][0][0], image['bboxes'][0][1], image['bboxes'][0][2], image['bboxes'][0][3]
-#                 x0, y0, x1, y1 = adjust_bbox(x0, y0, x1, y1)
-#                 x0, y0, x1, y1 = adjust_coordinate(x0, y0, x1, y1, x_original, y_original)
-#                 x0, y0, x1, y1 = int(x0), int(y0), int(x1), int(y1)
-#                 cv2.rectangle(orginal_img, (x0, y0), (x1, y1), (0, 0, 255), 10)
-#                 img_crop = img_crop[y0:y1, x0:x1]
-#                 cv2.imwrite(crop_save_path + img_name, img_crop)
-#         cv2.imwrite(box_save_path + img_name, orginal_img)
+        #     for *xyxy, conf, cls in reversed(det):
+        #         img_crop = orginal_img.copy()
+        #         x0, y0, x1, y1 = xyxy[0].item(), xyxy[1].item(), xyxy[2].item(), xyxy[3].item()
+        #         if 2 * abs(x0-x1) >= abs(y0-y1):
+        #             x0, y0, x1, y1 = adjust_coordinate(x0, y0, x1, y1, x_resized, y_resized)
+        #             image = resize_image(img_np, [[x0, y0, x1, y1, 0]], y_original, x_original)
+        #             x0, y0, x1, y1 = image['bboxes'][0][0], image['bboxes'][0][1], image['bboxes'][0][2], image['bboxes'][0][3]
+        #             x0, y0, x1, y1 = adjust_bbox(x0, y0, x1, y1)
+        #             x0, y0, x1, y1 = adjust_coordinate(x0, y0, x1, y1, x_original, y_original)
+        #             x0, y0, x1, y1 = int(x0), int(y0), int(x1), int(y1)
+        #             cv2.rectangle(orginal_img, (x0, y0), (x1, y1), (0, 0, 255), 10)
+        #             img_crop = img_crop[y0:y1, x0:x1]
+        #             cv2.imwrite(crop_save_path + img_name, img_crop)
+        # cv2.imwrite(box_save_path + img_name, orginal_img)
 
 
 # def Inference_crop_icon(model, img, conf_thres = 0.2, iou_thres = 0.45, classes=None, agnostic_nms = False, max_det = 1):
